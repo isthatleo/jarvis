@@ -40,9 +40,6 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 *.db-shm
 data/
 
-# lock files
-bun.lock
-
 # wake word model + WASM files (copied from node_modules)
 ui/public/openwakeword/
 ui/public/ort/

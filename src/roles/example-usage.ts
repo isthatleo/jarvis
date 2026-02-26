@@ -131,7 +131,8 @@ async function main() {
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 
   // 1. Initialize role system
-  const roles = initializeRoleSystem('/home/vierisid/jarvis/config/roles');
+  const { join } = await import('path');
+  const roles = initializeRoleSystem(join(import.meta.dir, '../../roles'));
 
   // 2. Create different agents with different roles
   const execAgent = createAgent('agent-001', 'executive_assistant', roles);

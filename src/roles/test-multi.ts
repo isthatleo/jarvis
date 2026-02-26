@@ -12,8 +12,10 @@ import {
 console.log('🧪 Testing Multi-Role Loading\n');
 
 // Load all roles from the config directory
-console.log('Loading roles from /home/vierisid/jarvis/config/roles/...');
-const roles = loadRolesFromDir('/home/vierisid/jarvis/config/roles');
+import { join } from 'path';
+const rolesDir = join(import.meta.dir, '../../roles');
+console.log(`Loading roles from ${rolesDir}...`);
+const roles = loadRolesFromDir(rolesDir);
 
 console.log(`✅ Loaded ${roles.size} roles:\n`);
 

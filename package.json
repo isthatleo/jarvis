@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "module": "src/daemon/index.ts",
   "type": "module",
-  "private": true,
   "scripts": {
     "start": "bun run src/daemon/index.ts",
     "dev": "bun --hot run src/daemon/index.ts",

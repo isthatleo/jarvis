@@ -20,7 +20,7 @@ console.log('🧪 Testing Role Engine\n');
 // Test 1: Load a role from YAML
 console.log('Test 1: Loading role from YAML...');
 try {
-  const role = loadRole('/home/vierisid/jarvis/src/roles/test-role.yaml');
+  const role = loadRole(import.meta.dir + '/test-role.yaml');
   console.log(`✅ Loaded role: ${role.name} (${role.id})`);
   console.log(`   Authority Level: ${role.authority_level}`);
   console.log(`   Responsibilities: ${role.responsibilities.length}`);
@@ -34,7 +34,7 @@ try {
 
 // Test 2: Validate role
 console.log('\nTest 2: Validating role...');
-const role = loadRole('/home/vierisid/jarvis/src/roles/test-role.yaml');
+const role = loadRole(import.meta.dir + '/test-role.yaml');
 const isValid = validateRole(role);
 console.log(isValid ? '✅ Role is valid' : '❌ Role is invalid');
 

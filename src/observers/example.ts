@@ -20,7 +20,7 @@ async function main() {
   const manager = new ObserverManager();
 
   // Register observers
-  manager.register(new FileWatcher(['/home/vierisid/jarvis/src'])); // Watch src directory
+  manager.register(new FileWatcher([import.meta.dir + '/../'])); // Watch src directory
   manager.register(new ClipboardMonitor(2000)); // Poll clipboard every 2 seconds
   manager.register(new ProcessMonitor(10000)); // Poll processes every 10 seconds
   manager.register(new NotificationListener()); // Stub

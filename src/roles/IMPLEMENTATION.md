@@ -6,7 +6,7 @@ The Role Engine has been successfully implemented for Project J.A.R.V.I.S. It pr
 
 ## Files Created
 
-### Core Implementation (`/home/vierisid/jarvis/src/roles/`)
+### Core Implementation (`~/jarvis/src/roles/`)
 
 1. **types.ts** (782 bytes)
    - Type definitions for RoleDefinition, KPI, CommunicationStyle, SubRoleTemplate
@@ -45,7 +45,7 @@ The Role Engine has been successfully implemented for Project J.A.R.V.I.S. It pr
    - Re-exports all public APIs
    - Clean single import point for consumers
 
-### Example Roles (`/home/vierisid/jarvis/config/roles/`)
+### Example Roles (`~/jarvis/config/roles/`)
 
 1. **executive-assistant.yaml** - Authority Level 6
    - Schedule management, email drafting, task tracking
@@ -185,19 +185,19 @@ All tests pass successfully:
 
 The Role Engine integrates with:
 
-1. **Agent System** (`/home/vierisid/jarvis/src/agents/`)
+1. **Agent System** (`~/jarvis/src/agents/`)
    - Agents are instantiated with specific roles
    - Role definitions drive agent behavior
 
-2. **LLM Integration** (`/home/vierisid/jarvis/src/llm/`)
+2. **LLM Integration** (`~/jarvis/src/llm/`)
    - System prompts generated for LLM context
    - Role-specific communication styles
 
-3. **Action System** (`/home/vierisid/jarvis/src/actions/`)
+3. **Action System** (`~/jarvis/src/actions/`)
    - Authority checks before action execution
    - Permission-based action routing
 
-4. **Daemon** (`/home/vierisid/jarvis/src/daemon/`)
+4. **Daemon** (`~/jarvis/src/daemon/`)
    - Roles loaded at startup
    - Managed throughout agent lifecycle
 
@@ -286,7 +286,7 @@ The Role Engine is complete, tested, and production-ready. It provides:
 - Extensive documentation
 
 All files are in:
-- **Core**: `/home/vierisid/jarvis/src/roles/`
-- **Config**: `/home/vierisid/jarvis/config/roles/`
+- **Core**: `~/jarvis/src/roles/`
+- **Config**: `~/jarvis/config/roles/`
 
 The implementation follows Bun/TypeScript ESM best practices and integrates seamlessly with the J.A.R.V.I.S. architecture.

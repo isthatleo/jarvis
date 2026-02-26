@@ -76,7 +76,7 @@ const pending = findCommitments({ status: 'pending' });
 
 ## Documentation
 
-- **Vault Extractor**: [docs/VAULT_EXTRACTOR.md](/home/vierisid/jarvis/docs/VAULT_EXTRACTOR.md)
+- **Vault Extractor**: [docs/VAULT_EXTRACTOR.md](~/jarvis/docs/VAULT_EXTRACTOR.md)
 - **Entity Types**: person, project, tool, place, concept, event
 - **Commitment Statuses**: pending, active, completed, failed, escalated
 

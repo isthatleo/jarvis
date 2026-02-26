@@ -56,7 +56,7 @@ bun run dev
 ## Project Structure
 
 ```
-/home/vierisid/jarvis/
+~/jarvis/
 ├── src/
 │   ├── llm/              # LLM provider abstraction
 │   │   ├── provider.ts   # Core types & interfaces
@@ -173,7 +173,7 @@ bun run db:init     # Initialize database
 
 2. **Clone and Setup**:
    ```bash
-   cd /home/vierisid/jarvis
+   cd ~/jarvis
    bun install
    bun run setup
    ```

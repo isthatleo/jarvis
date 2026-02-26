@@ -14,7 +14,7 @@ describe('createSTTProvider factory', () => {
   test('returns OpenAIWhisperSTT when provider=openai and key present', () => {
     const config: STTConfig = {
       provider: 'openai',
-      openai: { api_key: 'sk-test-key' },
+      openai: { api_key: 'test-openai-key-not-real' },
     };
     const provider = createSTTProvider(config);
     expect(provider).toBeInstanceOf(OpenAIWhisperSTT);
@@ -29,7 +29,7 @@ describe('createSTTProvider factory', () => {
   test('returns GroqWhisperSTT when provider=groq and key present', () => {
     const config: STTConfig = {
       provider: 'groq',
-      groq: { api_key: 'gsk-test-key' },
+      groq: { api_key: 'gtest-openai-key-not-real' },
     };
     const provider = createSTTProvider(config);
     expect(provider).toBeInstanceOf(GroqWhisperSTT);
@@ -65,7 +65,7 @@ describe('createSTTProvider factory', () => {
   test('returns OpenAI with custom model', () => {
     const config: STTConfig = {
       provider: 'openai',
-      openai: { api_key: 'sk-test', model: 'whisper-large-v3' },
+      openai: { api_key: 'test-key-not-real', model: 'whisper-large-v3' },
     };
     const provider = createSTTProvider(config);
     expect(provider).toBeInstanceOf(OpenAIWhisperSTT);

@@ -38,12 +38,12 @@ The J.A.R.V.I.S. LLM provider system provides a unified abstraction layer for mu
 
 ## Quick Start
 
-See [QUICKSTART.md](/home/vierisid/jarvis/QUICKSTART.md) for detailed setup instructions.
+See [QUICKSTART.md](~/jarvis/QUICKSTART.md) for detailed setup instructions.
 
 ### 1. Install
 
 ```bash
-cd /home/vierisid/jarvis
+cd ~/jarvis
 bun install
 ```
 
@@ -123,7 +123,7 @@ console.log(response.content);
 
 ### Anthropic (Claude)
 
-**Implementation**: `/home/vierisid/jarvis/src/llm/anthropic.ts`
+**Implementation**: `~/jarvis/src/llm/anthropic.ts`
 
 ```typescript
 import { AnthropicProvider } from './llm/index.ts';
@@ -149,7 +149,7 @@ const provider = new AnthropicProvider(
 
 ### OpenAI (GPT)
 
-**Implementation**: `/home/vierisid/jarvis/src/llm/openai.ts`
+**Implementation**: `~/jarvis/src/llm/openai.ts`
 
 ```typescript
 import { OpenAIProvider } from './llm/index.ts';
@@ -175,7 +175,7 @@ const provider = new OpenAIProvider(
 
 ### Ollama (Local Models)
 
-**Implementation**: `/home/vierisid/jarvis/src/llm/ollama.ts`
+**Implementation**: `~/jarvis/src/llm/ollama.ts`
 
 ```typescript
 import { OllamaProvider } from './llm/index.ts';
@@ -267,7 +267,7 @@ config.daemon.port = 8888;
 await saveConfig(config);
 ```
 
-See [/home/vierisid/jarvis/src/config/README.md](/home/vierisid/jarvis/src/config/README.md) for complete config documentation.
+See [~/jarvis/src/config/README.md](~/jarvis/src/config/README.md) for complete config documentation.
 
 ## Usage Examples
 
@@ -620,16 +620,16 @@ class Conversation {
 
 ### Documentation
 
-- [LLM Provider README](/home/vierisid/jarvis/src/llm/README.md)
-- [Config System README](/home/vierisid/jarvis/src/config/README.md)
-- [Quick Start Guide](/home/vierisid/jarvis/QUICKSTART.md)
-- [Implementation Summary](/home/vierisid/jarvis/IMPLEMENTATION_SUMMARY.md)
+- [LLM Provider README](~/jarvis/src/llm/README.md)
+- [Config System README](~/jarvis/src/config/README.md)
+- [Quick Start Guide](~/jarvis/QUICKSTART.md)
+- [Implementation Summary](~/jarvis/IMPLEMENTATION_SUMMARY.md)
 
 ### Examples
 
-- [Integration Example](/home/vierisid/jarvis/examples/llm-integration.ts)
-- [Test Suite](/home/vierisid/jarvis/src/llm/test.ts)
-- [Setup Script](/home/vierisid/jarvis/scripts/setup-config.ts)
+- [Integration Example](~/jarvis/examples/llm-integration.ts)
+- [Test Suite](~/jarvis/src/llm/test.ts)
+- [Setup Script](~/jarvis/scripts/setup-config.ts)
 
 ### External Resources
 

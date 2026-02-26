@@ -203,7 +203,7 @@ The daemon uses `bun:sqlite` with:
 - **Foreign keys**: Enabled
 - **Location**: `~/.jarvis/jarvis.db` (configurable)
 
-Schema is managed by `/home/vierisid/jarvis/src/vault/schema.ts`.
+Schema is managed by `~/jarvis/src/vault/schema.ts`.
 
 ## Testing
 

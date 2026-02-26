@@ -7,7 +7,7 @@ Get started with J.A.R.V.I.S. Communication Layer in 5 minutes.
 No dependencies needed! Uses only Bun built-in APIs.
 
 ```bash
-cd /home/vierisid/jarvis
+cd ~/jarvis
 bun test src/comms/*.test.ts  # Verify everything works
 ```
 

@@ -13,14 +13,14 @@ import {
   loadRolesFromDir,
   buildSystemPrompt,
   canPerform,
-} from '/home/vierisid/jarvis/src/roles/index.ts';
+} from '~/jarvis/src/roles/index.ts';
 ```
 
 ### 2. Load Roles
 
 ```typescript
 // Load all roles from config directory
-const roles = loadRolesFromDir('/home/vierisid/jarvis/config/roles');
+const roles = loadRolesFromDir('~/jarvis/config/roles');
 
 // Get a specific role
 const execRole = roles.get('executive_assistant');
@@ -55,7 +55,7 @@ console.log('Denied:', summary.denied);
 
 ## Creating a New Role
 
-Create a YAML file in `/home/vierisid/jarvis/config/roles/`:
+Create a YAML file in `~/jarvis/config/roles/`:
 
 ```yaml
 id: my_role
@@ -109,16 +109,16 @@ authority_level: 5  # 1-10
 
 ```bash
 # Test basic functionality
-bun run /home/vierisid/jarvis/src/roles/test.ts
+bun run ~/jarvis/src/roles/test.ts
 
 # Test multi-role loading
-bun run /home/vierisid/jarvis/src/roles/test-multi.ts
+bun run ~/jarvis/src/roles/test-multi.ts
 
 # Test utility functions
-bun run /home/vierisid/jarvis/src/roles/test-utils.ts
+bun run ~/jarvis/src/roles/test-utils.ts
 
 # See complete example
-bun run /home/vierisid/jarvis/src/roles/example-usage.ts
+bun run ~/jarvis/src/roles/example-usage.ts
 ```
 
 ## Common Patterns
@@ -166,7 +166,7 @@ console.log(`Average authority: ${stats.averageAuthorityLevel}`);
 
 ## Example Roles
 
-Four example roles are provided in `/home/vierisid/jarvis/config/roles/`:
+Four example roles are provided in `~/jarvis/config/roles/`:
 
 1. **executive-assistant.yaml** (Level 6)
    - Schedule, email, task management
@@ -187,15 +187,15 @@ Four example roles are provided in `/home/vierisid/jarvis/config/roles/`:
 ## File Locations
 
 **Core Implementation**:
-- `/home/vierisid/jarvis/src/roles/*.ts`
+- `~/jarvis/src/roles/*.ts`
 
 **Role Configurations**:
-- `/home/vierisid/jarvis/config/roles/*.yaml`
+- `~/jarvis/config/roles/*.yaml`
 
 **Documentation**:
-- `/home/vierisid/jarvis/src/roles/README.md` - Full documentation
-- `/home/vierisid/jarvis/src/roles/IMPLEMENTATION.md` - Implementation details
-- `/home/vierisid/jarvis/src/roles/QUICK_START.md` - This file
+- `~/jarvis/src/roles/README.md` - Full documentation
+- `~/jarvis/src/roles/IMPLEMENTATION.md` - Implementation details
+- `~/jarvis/src/roles/QUICK_START.md` - This file
 
 ## Need Help?
 

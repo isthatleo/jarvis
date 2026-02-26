@@ -6,7 +6,7 @@ Implemented a complete LLM provider abstraction layer and configuration system f
 
 ## Files Created
 
-### LLM Provider System (`/home/vierisid/jarvis/src/llm/`)
+### LLM Provider System (`~/jarvis/src/llm/`)
 
 1. **`provider.ts`** - Core type definitions and interfaces
    - `LLMMessage`, `LLMTool`, `LLMToolCall`, `LLMResponse`, `LLMStreamEvent`
@@ -54,7 +54,7 @@ Implemented a complete LLM provider abstraction layer and configuration system f
    - Configuration guide
    - Best practices and implementation details
 
-### Configuration System (`/home/vierisid/jarvis/src/config/`)
+### Configuration System (`~/jarvis/src/config/`)
 
 1. **`types.ts`** - Configuration type definitions
    - `JarvisConfig` type with all settings
@@ -277,7 +277,7 @@ Prerequisites:
 All files use absolute paths as required:
 
 ```
-/home/vierisid/jarvis/
+~/jarvis/
 ├── src/
 │   ├── llm/
 │   │   ├── provider.ts          (Types & interfaces)

@@ -46,7 +46,7 @@ const prompt = personalityToPrompt(personality);
 
 ## Documentation
 
-See [docs/PERSONALITY_ENGINE.md](/home/vierisid/jarvis/docs/PERSONALITY_ENGINE.md) for full documentation.
+See [docs/PERSONALITY_ENGINE.md](~/jarvis/docs/PERSONALITY_ENGINE.md) for full documentation.
 
 ## Testing
 

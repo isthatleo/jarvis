@@ -194,7 +194,7 @@ async function handleMessage(userMsg, channel, llm) {
 All files with absolute paths:
 
 ```
-/home/vierisid/jarvis/
+~/jarvis/
 ├── src/
 │   ├── personality/
 │   │   ├── model.ts
@@ -233,45 +233,45 @@ All files with absolute paths:
 
 ```bash
 # Test personality engine
-bun test /home/vierisid/jarvis/src/personality/personality.test.ts
+bun test ~/jarvis/src/personality/personality.test.ts
 
 # Test vault extractor
-bun test /home/vierisid/jarvis/src/vault/extractor.test.ts
+bun test ~/jarvis/src/vault/extractor.test.ts
 
 # Run all tests
-bun test /home/vierisid/jarvis/src/**/*.test.ts
+bun test ~/jarvis/src/**/*.test.ts
 ```
 
 ## Demos
 
 ```bash
 # Personality engine demo
-bun run /home/vierisid/jarvis/examples/personality-demo.ts
+bun run ~/jarvis/examples/personality-demo.ts
 
 # Vault extractor demo
-bun run /home/vierisid/jarvis/examples/extractor-demo.ts
+bun run ~/jarvis/examples/extractor-demo.ts
 
 # Full integration demo
-bun run /home/vierisid/jarvis/examples/full-integration.ts
+bun run ~/jarvis/examples/full-integration.ts
 ```
 
 ## Files to Review
 
 **Essential:**
-- `/home/vierisid/jarvis/src/personality/index.ts` - Personality API
-- `/home/vierisid/jarvis/src/vault/extractor.ts` - Extraction logic
-- `/home/vierisid/jarvis/README_PERSONALITY_VAULT.md` - Overview
+- `~/jarvis/src/personality/index.ts` - Personality API
+- `~/jarvis/src/vault/extractor.ts` - Extraction logic
+- `~/jarvis/README_PERSONALITY_VAULT.md` - Overview
 
 **Documentation:**
-- `/home/vierisid/jarvis/docs/PERSONALITY_ENGINE.md` - Detailed guide
-- `/home/vierisid/jarvis/docs/VAULT_EXTRACTOR.md` - Extraction guide
+- `~/jarvis/docs/PERSONALITY_ENGINE.md` - Detailed guide
+- `~/jarvis/docs/VAULT_EXTRACTOR.md` - Extraction guide
 
 **Examples:**
-- `/home/vierisid/jarvis/examples/full-integration.ts` - Complete example
+- `~/jarvis/examples/full-integration.ts` - Complete example
 
 **Tests:**
-- `/home/vierisid/jarvis/src/personality/personality.test.ts`
-- `/home/vierisid/jarvis/src/vault/extractor.test.ts`
+- `~/jarvis/src/personality/personality.test.ts`
+- `~/jarvis/src/vault/extractor.test.ts`
 
 ## Summary
 

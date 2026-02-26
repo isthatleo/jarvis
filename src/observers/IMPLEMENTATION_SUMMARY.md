@@ -27,7 +27,7 @@ The Observer Layer for Project J.A.R.V.I.S. has been successfully implemented as
 ## File Structure
 
 ```
-/home/vierisid/jarvis/src/observers/
+~/jarvis/src/observers/
 ├── index.ts                    # Common interface + ObserverManager
 ├── file-watcher.ts             # File system observer (IMPLEMENTED)
 ├── clipboard.ts                # Clipboard observer (IMPLEMENTED)

@@ -17,7 +17,8 @@ import {
 console.log('🧪 Testing Role Utility Functions\n');
 
 // Load roles
-const roles = loadRolesFromDir('/home/vierisid/jarvis/config/roles');
+import { join } from 'path';
+const roles = loadRolesFromDir(join(import.meta.dir, '../../roles'));
 console.log(`✅ Loaded ${roles.size} roles\n`);
 
 // Test 1: Find roles with specific permission

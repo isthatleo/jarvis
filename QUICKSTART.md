@@ -13,7 +13,7 @@ Get up and running with J.A.R.V.I.S. LLM providers in 5 minutes.
 ## Step 1: Install Dependencies
 
 ```bash
-cd /home/vierisid/jarvis
+cd ~/jarvis
 bun install
 ```
 
@@ -169,12 +169,12 @@ cp config.example.yaml ~/.jarvis/config.yaml
 ## Next Steps
 
 1. **Read the Documentation**:
-   - `/home/vierisid/jarvis/src/llm/README.md` - LLM providers
-   - `/home/vierisid/jarvis/src/config/README.md` - Configuration
+   - `~/jarvis/src/llm/README.md` - LLM providers
+   - `~/jarvis/src/config/README.md` - Configuration
 
 2. **Explore Examples**:
-   - `/home/vierisid/jarvis/examples/llm-integration.ts`
-   - `/home/vierisid/jarvis/src/llm/test.ts`
+   - `~/jarvis/examples/llm-integration.ts`
+   - `~/jarvis/src/llm/test.ts`
 
 3. **Integrate into Daemon**:
    - Import `LLMManager` in your daemon code
@@ -292,8 +292,8 @@ const response = await manager.chat(messages);
 
 ## Getting Help
 
-- Check `/home/vierisid/jarvis/src/llm/README.md` for detailed docs
-- Review `/home/vierisid/jarvis/IMPLEMENTATION_SUMMARY.md` for architecture
+- Check `~/jarvis/src/llm/README.md` for detailed docs
+- Review `~/jarvis/IMPLEMENTATION_SUMMARY.md` for architecture
 - Run test file to verify setup: `bun run src/llm/test.ts`
 - Check config: `cat ~/.jarvis/config.yaml`
 
