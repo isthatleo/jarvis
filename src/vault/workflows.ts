@@ -122,8 +122,10 @@ export function findWorkflows(query?: {
   }
 
   const where = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
-  const limit = query?.limit ? `LIMIT ${query.limit}` : '';
-  const rows = getDb().prepare(`SELECT * FROM workflows ${where} ORDER BY updated_at DESC ${limit}`).all(...params) as WorkflowRow[];
+  const limitVal = query?.limit ? Math.max(1, Math.min(parseInt(String(query.limit), 10) || 100, 1000)) : null;
+  const limitClause = limitVal ? 'LIMIT ?' : '';
+  if (limitVal) params.push(limitVal);
+  const rows = getDb().prepare(`SELECT * FROM workflows ${where} ORDER BY updated_at DESC ${limitClause}`).all(...params) as WorkflowRow[];
 
   let result = rows.map(parseWorkflow);
   if (query?.tag) {
@@ -294,8 +296,9 @@ export function findExecutions(query: {
   if (query.status) { conditions.push('status = ?'); params.push(query.status); }
 
   const where = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
-  const limit = query.limit ? `LIMIT ${query.limit}` : 'LIMIT 100';
-  const rows = getDb().prepare(`SELECT * FROM workflow_executions ${where} ORDER BY started_at DESC ${limit}`).all(...params) as ExecutionRow[];
+  const limitVal = Math.max(1, Math.min(parseInt(String(query.limit ?? 100), 10) || 100, 1000));
+  params.push(limitVal);
+  const rows = getDb().prepare(`SELECT * FROM workflow_executions ${where} ORDER BY started_at DESC LIMIT ?`).all(...params) as ExecutionRow[];
   return rows.map(parseExecution);
 }
 

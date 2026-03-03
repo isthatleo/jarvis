@@ -1,4 +1,5 @@
 import type { NodeDefinition } from '../registry.ts';
+import { safeExecuteCode } from '../../safe-eval.ts';
 
 export const codeExecutionAction: NodeDefinition = {
   type: 'action.code_execution',
@@ -26,6 +27,13 @@ export const codeExecutionAction: NodeDefinition = {
         { label: 'TypeScript', value: 'typescript' },
       ],
     },
+    timeout_ms: {
+      type: 'number',
+      label: 'Timeout (ms)',
+      description: 'Maximum execution time before the code is killed.',
+      required: false,
+      default: 10000,
+    },
   },
   inputs: ['default'],
   outputs: ['default'],
@@ -33,6 +41,7 @@ export const codeExecutionAction: NodeDefinition = {
     const code = String(config.code ?? '');
     if (!code) throw new Error('code is required');
     const language = String(config.language ?? 'javascript');
+    const timeoutMs = typeof config.timeout_ms === 'number' ? config.timeout_ms : 10_000;
 
     ctx.logger.info(`Executing ${language} snippet (${code.length} chars)`);
 
@@ -46,18 +55,7 @@ export const codeExecutionAction: NodeDefinition = {
 
     let result: unknown;
     try {
-      // Wrap code in an async function so top-level await and return work
-      // TypeScript: strip type annotations at a basic level via transpileModule if needed.
-      // For now both JS and TS are run through new AsyncFunction — TS without complex generics
-      // works because Bun's engine handles most modern syntax.
-      const wrappedCode = `
-        return (async function(input, ctx) {
-          ${code}
-        })(input, ctx);
-      `;
-      // eslint-disable-next-line no-new-func
-      const fn = new Function('input', 'ctx', wrappedCode);
-      result = await fn(input, safeCtx);
+      result = await safeExecuteCode(code, input, safeCtx, timeoutMs);
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       ctx.logger.error(`Code execution failed: ${message}`);

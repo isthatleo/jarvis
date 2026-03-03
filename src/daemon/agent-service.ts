@@ -245,16 +245,15 @@ export class AgentService implements Service, IAgentService {
 
     const onComplete = async (fullText: string): Promise<void> => {
       // Note: orchestrator already adds assistant response to history
-
-      // Fire-and-forget: extract knowledge into vault
-      this.extractKnowledge(text, fullText).catch((err) =>
-        console.error('[AgentService] Extraction error:', err)
-      );
-
-      // Fire-and-forget: personality learning
-      this.learnFromInteraction(text, fullText, channel).catch((err) =>
-        console.error('[AgentService] Personality learning error:', err)
-      );
+      // Run extraction and learning in parallel, wait for both to settle
+      await Promise.allSettled([
+        this.extractKnowledge(text, fullText).catch((err) =>
+          console.error('[AgentService] Extraction error:', err instanceof Error ? err.message : err)
+        ),
+        this.learnFromInteraction(text, fullText, channel).catch((err) =>
+          console.error('[AgentService] Learning error:', err instanceof Error ? err.message : err)
+        ),
+      ]);
     };
 
     return { stream, onComplete };
@@ -268,15 +267,15 @@ export class AgentService implements Service, IAgentService {
 
     const response = await this.orchestrator.processMessage(systemPrompt, text);
 
-    // Fire-and-forget: extract knowledge into vault
-    this.extractKnowledge(text, response).catch((err) =>
-      console.error('[AgentService] Extraction error:', err)
-    );
-
-    // Fire-and-forget: personality learning
-    this.learnFromInteraction(text, response, channel).catch((err) =>
-      console.error('[AgentService] Personality learning error:', err)
-    );
+    // Run extraction and learning in parallel (non-blocking but tracked)
+    Promise.allSettled([
+      this.extractKnowledge(text, response).catch((err) =>
+        console.error('[AgentService] Extraction error:', err instanceof Error ? err.message : err)
+      ),
+      this.learnFromInteraction(text, response, channel).catch((err) =>
+        console.error('[AgentService] Learning error:', err instanceof Error ? err.message : err)
+      ),
+    ]);
 
     return response;
   }

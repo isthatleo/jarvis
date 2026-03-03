@@ -105,7 +105,19 @@ export async function executeNode(
     }
 
     try {
-      const output = await nodeDef.execute(input, resolvedConfig, ctx);
+      // Enforce node-level timeout from workflow settings
+      const nodeTimeout = settings.timeoutMs ?? 300_000;
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      const output = await Promise.race([
+        nodeDef.execute(input, resolvedConfig, ctx),
+        new Promise<never>((_, reject) => {
+          timer = setTimeout(
+            () => reject(new Error(`Node '${node.label}' timed out after ${nodeTimeout}ms`)),
+            nodeTimeout,
+          );
+        }),
+      ]);
+      clearTimeout(timer);
       return output;
     } catch (err) {
       lastError = err instanceof Error ? err : new Error(String(err));

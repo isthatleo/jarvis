@@ -1,4 +1,5 @@
 import type { NodeDefinition } from '../registry.ts';
+import { safeEvaluateExpression } from '../../safe-eval.ts';
 
 export const switchNode: NodeDefinition = {
   type: 'logic.switch',
@@ -30,9 +31,7 @@ export const switchNode: NodeDefinition = {
 
     let exprValue: unknown;
     try {
-      // eslint-disable-next-line no-new-func
-      const fn = new Function('data', 'variables', `"use strict"; return (${expression});`);
-      exprValue = fn(input.data, input.variables);
+      exprValue = safeEvaluateExpression(expression, { data: input.data, variables: input.variables });
     } catch (err) {
       ctx.logger.warn(`Switch expression evaluation error: ${err instanceof Error ? err.message : String(err)}`);
       exprValue = undefined;

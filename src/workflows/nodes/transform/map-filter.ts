@@ -1,4 +1,5 @@
 import type { NodeDefinition } from '../registry.ts';
+import { safeEvaluateExpression } from '../../safe-eval.ts';
 
 export const mapFilterTransform: NodeDefinition = {
   type: 'transform.map_filter',
@@ -58,18 +59,15 @@ export const mapFilterTransform: NodeDefinition = {
 
     ctx.logger.info(`${mode} on field "${itemsField}" (${arr.length} items)`);
 
-    // eslint-disable-next-line no-new-func
-    const fn = new Function('item', 'index', 'data', `"use strict"; return (${expression});`);
-
     let result: unknown[];
     if (mode === 'map') {
       result = arr.map((item, index) => {
-        try { return fn(item, index, input.data); }
+        try { return safeEvaluateExpression(expression, { item, index, data: input.data }); }
         catch (e) { ctx.logger.warn(`map expression error at index ${index}: ${e}`); return item; }
       });
     } else {
       result = arr.filter((item, index) => {
-        try { return fn(item, index, input.data); }
+        try { return !!safeEvaluateExpression(expression, { item, index, data: input.data }); }
         catch (e) { ctx.logger.warn(`filter expression error at index ${index}: ${e}`); return false; }
       });
     }

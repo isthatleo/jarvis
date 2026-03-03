@@ -342,6 +342,17 @@ export class AgentOrchestrator {
         }
       }
 
+      // Ensure doneResponse is never null (stream may end without 'done' event)
+      if (!doneResponse) {
+        doneResponse = {
+          content: accumulatedText,
+          tool_calls: toolCalls,
+          usage: { input_tokens: 0, output_tokens: 0 },
+          model: responseModel,
+          finish_reason: 'stop',
+        };
+      }
+
       // No tool calls — this is the final response
       if (toolCalls.length === 0) {
         finalText += accumulatedText;

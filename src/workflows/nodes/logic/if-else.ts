@@ -1,4 +1,5 @@
 import type { NodeDefinition } from '../registry.ts';
+import { safeEvaluateExpression } from '../../safe-eval.ts';
 
 export const ifElseNode: NodeDefinition = {
   type: 'logic.if_else',
@@ -24,9 +25,7 @@ export const ifElseNode: NodeDefinition = {
 
     let result = false;
     try {
-      // eslint-disable-next-line no-new-func
-      const fn = new Function('data', 'variables', `"use strict"; return !!(${condition});`);
-      result = fn(input.data, input.variables);
+      result = !!safeEvaluateExpression(condition, { data: input.data, variables: input.variables });
     } catch (err) {
       ctx.logger.warn(`Condition evaluation error: ${err instanceof Error ? err.message : String(err)}`);
       result = false;

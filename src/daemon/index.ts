@@ -160,7 +160,7 @@ async function handleShutdown(signal: string): Promise<void> {
     try {
       const { desktop } = await import('../actions/tools/desktop.ts');
       if (desktop.connected) await desktop.disconnect();
-    } catch { /* ignore */ }
+    } catch (err) { console.warn('[Daemon] Desktop disconnect failed (non-fatal):', err instanceof Error ? err.message : err); }
 
     // Stop health monitor
     if (healthMonitor) {
@@ -629,7 +629,7 @@ export async function startDaemon(userConfig?: Partial<DaemonConfig>): Promise<v
                 break;
               }
             }
-          } catch { /* overlay launch is best-effort */ }
+          } catch (err) { console.warn('[Daemon] Awareness overlay failed (non-fatal):', err instanceof Error ? err.message : err); }
         }
       } catch (err) {
         console.error('[Daemon] Awareness service failed to start:', err instanceof Error ? err.message : err);
@@ -711,7 +711,9 @@ export async function startDaemon(userConfig?: Partial<DaemonConfig>): Promise<v
 
     console.log(`[Daemon] Heartbeat interval: ${heartbeatConfig?.interval_minutes ?? 15} min, active hours: ${activeHours.start}:00-${activeHours.end}:00`);
 
+    let heartbeatBusy = false;
     heartbeatTimer = setInterval(async () => {
+      if (heartbeatBusy) return;
       // Check if within active hours
       const currentHour = new Date().getHours();
       if (currentHour < activeHours.start || currentHour >= activeHours.end) {
@@ -719,6 +721,7 @@ export async function startDaemon(userConfig?: Partial<DaemonConfig>): Promise<v
         return;
       }
 
+      heartbeatBusy = true;
       try {
         // Check commitments and route critical/high ones to reactor
         const commitmentEvents = checkCommitments();
@@ -746,6 +749,8 @@ export async function startDaemon(userConfig?: Partial<DaemonConfig>): Promise<v
         }
       } catch (err) {
         console.error('[Daemon] Heartbeat error:', err);
+      } finally {
+        heartbeatBusy = false;
       }
     }, heartbeatIntervalMs);
 
