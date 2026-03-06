@@ -1,4 +1,5 @@
 import type { RoleDefinition } from './types.ts';
+import { TOOL_GUIDE } from './tool-guide.ts';
 
 export type PromptContext = {
   userName?: string;
@@ -118,6 +119,10 @@ export function buildSystemPrompt(role: RoleDefinition, context?: PromptContext)
     sections.push('When a tool returns [AUTHORITY DENIED], explain that you lack permission and suggest alternatives.');
     sections.push('');
   }
+
+  // Tool Guide (static reference)
+  sections.push(TOOL_GUIDE);
+  sections.push('');
 
   // Current Context
   if (context) {
