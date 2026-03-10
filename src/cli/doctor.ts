@@ -148,7 +148,7 @@ export async function runDoctor(): Promise<void> {
   try {
     const { Database } = await import('bun:sqlite');
     const db = new Database(':memory:');
-    db.exec('CREATE TABLE test (id INTEGER PRIMARY KEY)');
+    db.run('CREATE TABLE test (id INTEGER PRIMARY KEY)');
     db.close();
     results.push({ name: 'SQLite', status: 'ok', message: 'bun:sqlite working' });
   } catch (err) {
