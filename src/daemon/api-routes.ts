@@ -1650,6 +1650,7 @@ export function createApiRoutes(ctx: ApiContext): Record<string, unknown> {
           status: ctx.awarenessService.status(),
           enabled: ctx.awarenessService.isEnabled(),
           liveContext: ctx.awarenessService.getLiveContext(),
+          usageEstimate: ctx.awarenessService.getUsageEstimate(),
         });
       },
     },
